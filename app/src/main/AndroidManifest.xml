@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Homepage"
+        tools:targetApi="31">
+        <activity
+            android:name=".visaobarbeiro.TelaBarbeiroEdicao"
+            android:exported="false"
+            android:label="@string/title_activity_tela_barbeiro_edicao"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".visaobarbeiro.BarbeiroCadastro"
+            android:exported="false"
+            android:label="@string/title_activity_barbeiro_cadastro"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".visaobarbeiro.BarbeiroAtualizadoComSucesso"
+            android:exported="false"
+            android:label="@string/title_activity_barbeiro_atualizado_com_sucesso"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".visaobarbeiro.BarbeiroCadastradoComSucesso"
+            android:exported="false"
+            android:label="@string/title_activity_barbeiro_cadastrado_com_sucesso"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".visaobarbeiro.MuralAvisoBarbeiro"
+            android:exported="false"
+            android:label="@string/title_activity_mural_aviso_barbeiro"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".visaobarbeiro.MuralAvisoEdicao"
+            android:exported="false"
+            android:label="@string/title_activity_mural_aviso_edicao"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".visaobarbeiro.MuralAvisosConfirmacaoExclusaoAviso"
+            android:exported="false"
+            android:label="@string/title_activity_mural_avisos_confirmacao_exclusao_aviso"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".visaobarbeiro.AvisoApagadoComSucesso"
+            android:exported="false"
+            android:label="@string/title_activity_aviso_apagado_com_sucesso"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".visaobarbeiro.MuralAviso"
+            android:exported="false"
+            android:label="@string/title_activity_mural_aviso"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".visaobarbeiro.AvisoCriadoComSucesso"
+            android:exported="false"
+            android:label="@string/title_activity_aviso_criado_com_sucesso"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".visaobarbeiro.Dido"
+            android:exported="false"
+            android:label="@string/title_activity_dido"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".visaobarbeiro.TelaCalendarioBarbeiro"
+            android:exported="false"
+            android:label="@string/title_activity_tela_calendario_barbeiro"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".visaobarbeiro.ui.theme.TelaCalendarioBarbeiro"
+            android:exported="false"
+            android:label="@string/title_activity_tela_calendario_barbeiro"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".visaobarbeiro.TelaCalendarioVizualizacao"
+            android:exported="false"
+            android:label="@string/title_activity_tela_calendario_vizualizacao"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".visaocliente.calendario"
+            android:exported="false"
+            android:label="@string/title_activity_calendario"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".visaocliente.TelaUsuarioConfirmacaoExclusaoConta"
+            android:exported="false"
+            android:label="@string/title_activity_tela_usuario_confirmacao_exclusao_conta"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".visaocliente.Atividade2Theme"
+            android:exported="false"
+            android:label="@string/title_activity_atividade2_theme"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".visaocliente.AgendamentoServico"
+            android:exported="false"
+            android:label="@string/title_activity_agendamento_servico"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".visaocliente.AgendamentoSelecaoBarbeiro"
+            android:exported="false"
+            android:label="@string/title_activity_agendamento_selecao_barbeiro"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".visaocliente.VizualizacaoAgendamento"
+            android:exported="false"
+            android:label="@string/title_activity_vizualizacao_agendamento"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".visaocliente.TelaAgendamentos"
+            android:exported="false"
+            android:label="@string/title_activity_tela_agendamentos"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".visaocliente.SejaBemVindo"
+            android:exported="false"
+            android:label="@string/title_activity_seja_bem_vindo"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".MainActivity2"
+            android:exported="false"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Homepage">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
