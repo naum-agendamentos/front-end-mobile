@@ -4,10 +4,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Dashboard
 import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
@@ -30,7 +27,7 @@ import androidx.compose.ui.zIndex
 import com.example.homepage.R
 
 @Composable
-fun edicaca() {
+fun Exclusao() {
     val backgroundImage = painterResource(id = R.drawable.telavisaodobarbeiro)
 
     Box(
@@ -57,7 +54,7 @@ fun edicaca() {
                 .fillMaxSize()
         ) {
             Text(
-                text = "Calendário",
+                text = "MEU PERFIL",
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
                     fontSize = 30.sp
@@ -84,59 +81,53 @@ fun edicaca() {
                     modifier = Modifier
                         .padding(16.dp)
                 ) {
-                    Text(
-                        text = "BARBEIROS",
-                        style = TextStyle(
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 24.sp,
-                            color = Color.Black
-                        )
+                }
+            }
+
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+                modifier = Modifier.align(Alignment.Center)
+            ) {
+                Text(
+                    text = "Barbeiro excluído",
+                    style = TextStyle(
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 24.sp
                     )
+                )
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    text = "com sucesso!",
+                    style = TextStyle(
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 24.sp
+                    )
+                )
 
-                    Box(
-                        modifier = Modifier
-                            .size(200.dp)
-                            .border(2.dp, Color.Gray, RoundedCornerShape(12.dp))
-                            .background(Color.LightGray),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(text = "selecione uma imagem", color = Color.DarkGray)
-                    }
+                Image(
+                    painter = painterResource(id = R.drawable.check2),
+                    contentDescription = "Ícone de verificação",
+                    modifier = Modifier
+                        .size(130.dp)
+                        .padding(bottom = 32.dp)
+                        .offset(y = 80.dp)
+                )
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                // Botão OK
+                Button(
+                    onClick = { /* Ação do botão */ },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFF003CFF),
+                        contentColor = Color.White
 
-                    EditableField(text = "Guilherme Lima")
-
-                    Spacer(modifier = Modifier.height(8.dp))
-
-                    EditableField(text = "E-mail: guilima@gmail.com")
-
-                    Spacer(modifier = Modifier.height(8.dp))
-
-                    EditableField(text = "Celular: (11) 98888-8888")
-
-                    Spacer(modifier = Modifier.height(32.dp))
-
-                    Row(
-                        horizontalArrangement = Arrangement.SpaceEvenly,
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Button(
-                            onClick = { },
-                            colors = ButtonDefaults.buttonColors(containerColor = Color.DarkGray)
-                        ) {
-                            Text(text = "CANCELAR", color = Color.White)
-                        }
-
-                        Button(
-                            onClick = { },
-                            colors = ButtonDefaults.buttonColors(containerColor = Color.Green)
-                        ) {
-                            Text(text = "SALVAR", color = Color.White)
-                        }
-                    }
+                    ),
+                    modifier = Modifier
+                        .padding(top = 140.dp)
+                        .height(50.dp)
+                        .width(100.dp)
+                ) {
+                    Text(text = "OK")
                 }
             }
 
@@ -152,7 +143,7 @@ fun edicaca() {
                     .padding(8.dp)
             )
 
-            Edicaocaqui(
+            ExcluirOBarbeiro(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .fillMaxWidth()
@@ -162,31 +153,7 @@ fun edicaca() {
 }
 
 @Composable
-fun EditableField(text: String) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp)
-            .border(1.dp, Color.Gray, RoundedCornerShape(8.dp))
-            .background(Color.White)
-            .padding(12.dp)
-    ) {
-        Text(
-            text = text,
-            style = TextStyle(fontSize = 16.sp, color = Color.Black),
-            modifier = Modifier.weight(1f)
-        )
-        Icon(
-            imageVector = Icons.Default.Edit,
-            contentDescription = "Editar",
-            tint = Color.Black
-        )
-    }
-}
-
-@Composable
-fun Edicaocaqui(modifier: Modifier = Modifier) {
+fun ExcluirOBarbeiro(modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
             .background(color = Color.White)
@@ -222,7 +189,7 @@ fun Edicaocaqui(modifier: Modifier = Modifier) {
             contentAlignment = Alignment.Center
         ) {
             Icon(
-                imageVector = Icons.Default.Dashboard,
+                imageVector = Icons.Default.Search,
                 contentDescription = "Search",
                 modifier = Modifier.size(40.dp),
                 tint = Color.Black
@@ -265,6 +232,6 @@ fun Edicaocaqui(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-fun Edica() {
-    edicaca()
+fun BarbeiroExcluido() {
+    Exclusao()
 }

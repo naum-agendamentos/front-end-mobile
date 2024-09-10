@@ -115,10 +115,9 @@ fun Mural() {
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    Row(
+                    Column(
                         modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalArrangement = Arrangement.SpaceBetween
                     ) {
                         Column {
                             Text(text = "Programar:", fontSize = 16.sp)
@@ -129,7 +128,7 @@ fun Mural() {
                             )
                         }
 
-                        Row(verticalAlignment = Alignment.CenterVertically) {
+                        Column {
                             Text(text = "Status: ", fontSize = 16.sp)
                             var isActive by remember { mutableStateOf(true) }
                             Switch(
@@ -152,7 +151,7 @@ fun Mural() {
                             Text(text = "CANCELAR", color = Color.White)
                         }
                         Button(
-                            onClick = {},
+                            onClick = { /* Handle save */ },
                             colors = ButtonDefaults.buttonColors(containerColor = Color.Green)
                         ) {
                             Text(text = "SALVAR", color = Color.White)

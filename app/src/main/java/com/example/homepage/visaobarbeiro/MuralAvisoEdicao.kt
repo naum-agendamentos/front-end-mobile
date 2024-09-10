@@ -26,8 +26,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.homepage.R
 
-
-
 @Composable
 fun AvisoEdicao() {
     val backgroundImage = painterResource(id = R.drawable.telavisaodobarbeiro)
@@ -114,10 +112,9 @@ fun AvisoEdicao() {
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    Row(
+                    Column(
                         modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalArrangement = Arrangement.SpaceBetween
                     ) {
                         Column {
                             Text(text = "Programar:", fontSize = 16.sp)
@@ -128,7 +125,7 @@ fun AvisoEdicao() {
                             )
                         }
 
-                        Row(verticalAlignment = Alignment.CenterVertically) {
+                        Column {
                             Text(text = "Status: ", fontSize = 16.sp)
                             var isActive by remember { mutableStateOf(true) }
                             Switch(

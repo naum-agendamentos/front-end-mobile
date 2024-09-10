@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -42,7 +43,7 @@ fun MuralAvisoBarbeiro() {
 
         Image(
             painter = painterResource(id = R.drawable.logobarbeiro),
-            contentDescription = "Login image",
+            contentDescription = stringResource(id = R.string.login_image),
             modifier = Modifier
                 .size(60.dp)
                 .padding(start = 5.dp)
@@ -54,7 +55,7 @@ fun MuralAvisoBarbeiro() {
                 .fillMaxSize()
         ) {
             Text(
-                text = "AGENDAMENTOS",
+                text = stringResource(id = R.string.agendamentos),
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
                     fontSize = 30.sp
@@ -83,34 +84,34 @@ fun MuralAvisoBarbeiro() {
                 ) {
                     // Adicionando os itens de serviço
                     MuralDeAviso(
-                        nome = "Corte simples",
-                        preco = "R$ 40,00",
-                        duracao = "30 Min",
+                        nome = stringResource(id = R.string.corte_simples),
+                        preco = stringResource(id = R.string.preco_corte_simples),
+                        duracao = stringResource(id = R.string.duracao_corte_simples),
                         isSelected = true
                     )
                     MuralDeAviso(
-                        nome = "Barba simples",
-                        preco = "R$ 45,00",
-                        duracao = "30 Min",
+                        nome = stringResource(id = R.string.barba_simples),
+                        preco = stringResource(id = R.string.preco_barba_simples),
+                        duracao = stringResource(id = R.string.duracao_barba_simples),
                         isSelected = true
                     )
                     MuralDeAviso(
-                        nome = "Corte feminino simples",
-                        preco = "R$ 50,00",
-                        duracao = "60 Min",
+                        nome = stringResource(id = R.string.corte_feminino_simples),
+                        preco = stringResource(id = R.string.preco_corte_feminino_simples),
+                        duracao = stringResource(id = R.string.duracao_corte_feminino_simples),
                         isSelected = false
                     )
                     MuralDeAviso(
-                        nome = "Platinado",
-                        preco = "R$ 60,00",
-                        duracao = "120 Min",
+                        nome = stringResource(id = R.string.platinado),
+                        preco = stringResource(id = R.string.preco_platinado),
+                        duracao = stringResource(id = R.string.duracao_platinado),
                         isSelected = false
                     )
                 }
             }
 
             Text(
-                text = "10H00",
+                text = stringResource(id = R.string.hora_exemplo),
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp,
@@ -167,7 +168,7 @@ fun MuralDeAviso(
             if (checked) {
                 Icon(
                     imageVector = Icons.Default.Check,
-                    contentDescription = "Checked",
+                    contentDescription = stringResource(id = R.string.checked),
                     tint = Color.White
                 )
             }
@@ -197,7 +198,7 @@ fun MuralAvisos(modifier: Modifier = Modifier) {
         ) {
             Icon(
                 imageVector = Icons.Default.DateRange,
-                contentDescription = "Home",
+                contentDescription = stringResource(id = R.string.home),
                 modifier = Modifier.size(40.dp),
                 tint = Color.Black
             )
@@ -213,7 +214,7 @@ fun MuralAvisos(modifier: Modifier = Modifier) {
         ) {
             Icon(
                 imageVector = Icons.Default.Search,
-                contentDescription = "Search",
+                contentDescription = stringResource(id = R.string.search),
                 modifier = Modifier.size(40.dp),
                 tint = Color.Black
             )
@@ -229,7 +230,7 @@ fun MuralAvisos(modifier: Modifier = Modifier) {
         ) {
             Icon(
                 imageVector = Icons.Default.Notifications,
-                contentDescription = "Notifications",
+                contentDescription = stringResource(id = R.string.notifications),
                 modifier = Modifier.size(40.dp),
                 tint = Color.Black
             )
@@ -245,7 +246,7 @@ fun MuralAvisos(modifier: Modifier = Modifier) {
         ) {
             Icon(
                 imageVector = Icons.Default.Person,
-                contentDescription = "Profile",
+                contentDescription = stringResource(id = R.string.profile),
                 modifier = Modifier.size(40.dp),
                 tint = Color.Black
             )

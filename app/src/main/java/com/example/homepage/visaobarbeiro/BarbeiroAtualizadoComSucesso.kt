@@ -90,7 +90,7 @@ fun AtualizadoComSucesso() {
                 modifier = Modifier.align(Alignment.Center)
             ) {
                 Text(
-                    text = "Aviso criado",
+                    text = "Barbeiro Atualizado",
                     style = TextStyle(
                         fontWeight = FontWeight.Bold,
                         fontSize = 24.sp
