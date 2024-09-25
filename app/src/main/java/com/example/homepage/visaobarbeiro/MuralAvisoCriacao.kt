@@ -30,7 +30,7 @@ import com.example.homepage.R
 
 @Composable
 fun Mural() {
-    val backgroundImage = painterResource(id = R.drawable.telavisaodobarbeiro)
+    val backgroundImage = painterResource(id = R.drawable.fundo_barbeiro)
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -59,7 +59,8 @@ fun Mural() {
                 text = "Calendário",
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
-                    fontSize = 30.sp
+                    fontSize = 30.sp,
+                    color = Color.White
                 ),
                 modifier = Modifier
                     .align(Alignment.TopCenter)
