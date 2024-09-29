@@ -263,7 +263,7 @@ fun Edicaocaqui(modifier: Modifier = Modifier) {
     }
 }
 
-@Preview
+@Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun Edica() {
     edicaca()

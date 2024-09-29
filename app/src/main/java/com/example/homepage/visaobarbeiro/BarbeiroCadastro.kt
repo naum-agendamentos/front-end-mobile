@@ -315,7 +315,7 @@ fun Cadastrado(modifier: Modifier = Modifier) {
     }
 }
 
-@Preview
+@Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun BarbeiroCadastradoOk() {
     BarbeiroCad()
