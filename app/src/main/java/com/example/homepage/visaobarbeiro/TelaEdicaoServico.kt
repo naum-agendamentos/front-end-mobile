@@ -9,11 +9,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Upload
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -34,13 +29,13 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.zIndex
+
 import com.example.homepage.R
 import com.example.homepage.visaobarbeiro.IconRow
 import com.example.homepage.visaobarbeiro.navBarb
 
 @Composable
-fun BarbeiroCad() {
+fun EdicaoServ() {
     val backgroundImage = painterResource(id = R.drawable.fundo_barbeiro)
 
     Box(
@@ -64,7 +59,7 @@ fun BarbeiroCad() {
                 modifier = Modifier
                     .align(Alignment.Center)
                     .width(350.dp)
-                    .height(584.dp)
+                    .height(400.dp)
                     .offset(y = -50.dp)
                     .background(Color(0x0FFFFFFF), shape = RoundedCornerShape(15.dp))
             ) {
@@ -73,11 +68,11 @@ fun BarbeiroCad() {
                         .padding(16.dp)
                         .verticalScroll(rememberScrollState())
                 ) {
-                    BarbeiroFormScreen()
+                    EdicaoServInput()
                 }
             }
 
-            Cadastrado(
+            EditServ(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .fillMaxWidth()
@@ -89,7 +84,7 @@ fun BarbeiroCad() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BarbeiroFormScreen() {
+fun EdicaoServInput() {
 
     Column(
         modifier = Modifier
@@ -119,48 +114,12 @@ fun BarbeiroFormScreen() {
             }
             Spacer(modifier = Modifier.width(16.dp))
             Text(
-                text = "CADASTRAR BARBEIRO",
+                text = "CADASTRAR SERVIÇO",
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
                     fontSize = 22.sp,
                     color = Color.White
                 )
-            )
-        }
-
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.White, shape = RoundedCornerShape(12.dp))
-                .border(1.dp, Color.Black, RoundedCornerShape(12.dp))
-                .padding(16.dp)
-                .clickable { /* Ação de selecionar imagem */ }
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.align(Alignment.Center)
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Upload,
-                    contentDescription = "Upload",
-                    modifier = Modifier.size(24.dp)
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(text = "Selecione uma imagem")
-            }
-        }
-
-        Box(
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .padding(top = 8.dp, bottom = 8.dp)
-        ) {
-            Text(
-                text = "pic_whats0110235402.jpeg",
-                style = TextStyle(
-                    color = Color.White
-                ),
-                modifier = Modifier.align(Alignment.CenterStart)
             )
         }
 
@@ -182,7 +141,7 @@ fun BarbeiroFormScreen() {
         OutlinedTextField(
             value = "",
             onValueChange = {},
-            label = { Text("E-mail:", color = Color.White) },
+            label = { Text("Tempo:", color = Color.White) },
             modifier = Modifier.fillMaxWidth(),
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = Color.White,
@@ -195,7 +154,7 @@ fun BarbeiroFormScreen() {
         OutlinedTextField(
             value = "",
             onValueChange = {},
-            label = { Text("Celular:", color = Color.White) },
+            label = { Text("Valor:", color = Color.White) },
             modifier = Modifier.fillMaxWidth(),
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = Color.White,
@@ -204,54 +163,14 @@ fun BarbeiroFormScreen() {
                 cursorColor = Color.White
             )
         )
-        Spacer(modifier = Modifier.height(16.dp))
-        OutlinedTextField(
-            value = "",
-            onValueChange = {},
-            label = { Text("Senha:", color = Color.White) },
-            modifier = Modifier.fillMaxWidth(),
-            visualTransformation = PasswordVisualTransformation(),
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.White,
-                unfocusedBorderColor = Color.White,
 
-                cursorColor = Color.White
-            )
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        OutlinedTextField(
-            value = "",
-            onValueChange = {},
-            label = { Text("Confirmar Senha:", color = Color.White) },
-            modifier = Modifier.fillMaxWidth(),
-            visualTransformation = PasswordVisualTransformation(),
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.White,
-                unfocusedBorderColor = Color.White,
-
-                cursorColor = Color.White
-            )
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        OutlinedTextField(
-            value = "",
-            onValueChange = {},
-            label = { Text("Descrição:", color = Color.White) },
-            modifier = Modifier.fillMaxWidth(),
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.White,
-                unfocusedBorderColor = Color.White,
-
-                cursorColor = Color.White
-            )
-        )
 
         Spacer(modifier = Modifier.height(16.dp))
     }
 }
 
 @Composable
-fun Cadastrado(modifier: Modifier = Modifier) {
+fun EditServ(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .background(color = Color.Transparent)
@@ -274,10 +193,10 @@ fun Cadastrado(modifier: Modifier = Modifier) {
 
             Button(
                 onClick = { /* Ação de salvar */ },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50)),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF303495)),
                 modifier = Modifier.weight(1f)
             ) {
-                Text(text = "SALVAR", color = Color.White)
+                Text(text = "EDITAR", color = Color.White)
             }
         }
 
@@ -288,6 +207,6 @@ fun Cadastrado(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-fun PreviewBarbeiroCad() {
-    BarbeiroCad()
+fun PreviewEdicaoServico() {
+    EdicaoServ()
 }

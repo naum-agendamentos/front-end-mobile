@@ -45,32 +45,7 @@ fun botoesTelas() {
             modifier = Modifier.fillMaxSize()
         )
 
-        Row(
-            modifier = Modifier
-                .align(Alignment.TopCenter)
-                .width(350.dp)
-
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween) {
-
-            Image(
-                painter = painterResource(id = R.drawable.logobarbeiro),
-                contentDescription = "Login image",
-                modifier = Modifier
-                    .size(60.dp)
-                    .padding(start = 5.dp)
-                    .padding(top = 10.dp)
-            )
-
-            Image(
-                painter = painterResource(id = R.drawable.pngtrespontos),
-                contentDescription = "Opções",
-                modifier = Modifier
-                    .width(36.dp)
-                    .height(36.dp)
-                    .offset(y = 20.dp)
-            )
-        }
+        navBarb()
 
 
         Box(
