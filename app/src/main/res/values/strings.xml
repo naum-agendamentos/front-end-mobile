@@ -31,28 +31,27 @@
     <string name="title_activity_barbeiro_excluido_com_sucesso">BarbeiroExcluidoComSucesso</string>
 
 
-        <string name="login_image">Login image</string>
-        <string name="agendamentos">AGENDAMENTOS</string>
-        <string name="corte_simples">Corte simples</string>
-        <string name="preco_corte_simples">R$ 40,00</string>
-        <string name="duracao_corte_simples">30 Min</string>
-        <string name="barba_simples">Barba simples</string>
-        <string name="preco_barba_simples">R$ 45,00</string>
-        <string name="duracao_barba_simples">30 Min</string>
-        <string name="corte_feminino_simples">Corte feminino simples</string>
-        <string name="preco_corte_feminino_simples">R$ 50,00</string>
-        <string name="duracao_corte_feminino_simples">60 Min</string>
-        <string name="platinado">Platinado</string>
-        <string name="preco_platinado">R$ 60,00</string>
-        <string name="duracao_platinado">120 Min</string>
-        <string name="hora_exemplo">10H00</string>
-        <string name="checked">Checked</string>
-        <string name="home">Home</string>
-        <string name="search">Search</string>
-        <string name="notifications">Notifications</string>
-        <string name="profile">Profile</string>
-
-
+    <string name="login_image">Login image</string>
+    <string name="agendamentos">AGENDAMENTOS</string>
+    <string name="corte_simples">Corte simples</string>
+    <string name="preco_corte_simples">R$ 40,00</string>
+    <string name="duracao_corte_simples">30 Min</string>
+    <string name="barba_simples">Barba simples</string>
+    <string name="preco_barba_simples">R$ 45,00</string>
+    <string name="duracao_barba_simples">30 Min</string>
+    <string name="corte_feminino_simples">Corte feminino simples</string>
+    <string name="preco_corte_feminino_simples">R$ 50,00</string>
+    <string name="duracao_corte_feminino_simples">60 Min</string>
+    <string name="platinado">Platinado</string>
+    <string name="preco_platinado">R$ 60,00</string>
+    <string name="duracao_platinado">120 Min</string>
+    <string name="hora_exemplo">10H00</string>
+    <string name="checked">Checked</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="notifications">Notifications</string>
+    <string name="profile">Profile</string>
+    <string name="title_activity_tela_inicial_barbeiro">TelaInicialBarbeiro</string>
 
 
 </resources>

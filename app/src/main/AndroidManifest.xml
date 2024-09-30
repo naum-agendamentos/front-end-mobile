@@ -13,6 +13,11 @@
         android:theme="@style/Theme.Homepage"
         tools:targetApi="31">
         <activity
+            android:name=".visaobarbeiro.TelaInicialBarbeiro"
+            android:exported="false"
+            android:label="@string/title_activity_tela_inicial_barbeiro"
+            android:theme="@style/Theme.Homepage" />
+        <activity
             android:name=".visaobarbeiro.BarbeiroExcluidoComSucesso"
             android:exported="false"
             android:label="@string/title_activity_barbeiro_excluido_com_sucesso"
