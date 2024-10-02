@@ -52,6 +52,7 @@
     <string name="notifications">Notifications</string>
     <string name="profile">Profile</string>
     <string name="title_activity_tela_inicial_barbeiro">TelaInicialBarbeiro</string>
+    <string name="title_activity_dashboard">Dashboard</string>
 
 
 </resources>
