@@ -63,6 +63,7 @@ dependencies {
     implementation(libs.transport.api)
     implementation(libs.play.services.games)
     implementation(libs.firebase.components)
+    implementation(libs.androidx.ui.text.google.fonts)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -78,8 +79,4 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview:1.4.1")
     implementation("androidx.activity:activity-compose:1.7.1")
     implementation("com.google.code.gson:gson:2.8.8")
-
-
-
-
 }
