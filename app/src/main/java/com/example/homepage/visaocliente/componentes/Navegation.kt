@@ -38,7 +38,7 @@ fun Navigation() {
     Row (
         modifier = Modifier
             .fillMaxWidth()
-            .height(75.dp)
+            .height(60.dp)
             .background(Color.Gray),
         horizontalArrangement = Arrangement.SpaceEvenly
     ){

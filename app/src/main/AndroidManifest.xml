@@ -13,6 +13,11 @@
         android:theme="@style/Theme.Homepage"
         tools:targetApi="31">
         <activity
+            android:name=".visaocliente.pages.MeuPerfil"
+            android:exported="false"
+            android:label="@string/title_activity_meu_perfil"
+            android:theme="@style/Theme.Homepage" />
+        <activity
             android:name=".visaobarbeiro.BarbeiroExcluidoComSucesso"
             android:exported="false"
             android:label="@string/title_activity_barbeiro_excluido_com_sucesso"
