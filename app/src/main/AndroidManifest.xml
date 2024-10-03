@@ -13,6 +13,31 @@
         android:theme="@style/Theme.Homepage"
         tools:targetApi="31">
         <activity
+            android:name=".telasguilherme.TelaEscolherServico"
+            android:exported="false"
+            android:label="@string/title_activity_tela_escolher_servico"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".telasguilherme.ui.theme.TelaAgendamentos"
+            android:exported="false"
+            android:label="@string/title_activity_tela_agendamentos"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".telasguilherme.MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".telasguilherme.ClienteTelaInicial"
+            android:exported="false"
+            android:label="@string/title_activity_cliente_tela_inicial"
+            android:theme="@style/Theme.Homepage" />
+        <activity
+            android:name=".telasguilherme.TelaInicializacao"
+            android:exported="false"
+            android:label="@string/title_activity_tela_inicializacao"
+            android:theme="@style/Theme.Homepage" />
+        <activity
             android:name=".visaobarbeiro.Dashboard"
             android:exported="false"
             android:label="@string/title_activity_dashboard"

@@ -53,6 +53,10 @@
     <string name="profile">Profile</string>
     <string name="title_activity_tela_inicial_barbeiro">TelaInicialBarbeiro</string>
     <string name="title_activity_dashboard">Dashboard</string>
+    <string name="title_activity_tela_inicializacao">TelaInicializacao</string>
+    <string name="title_activity_cliente_tela_inicial">ClienteTelaInicial</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_tela_escolher_servico">TelaEscolherServico</string>
 
 
 </resources>
