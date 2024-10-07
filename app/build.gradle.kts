@@ -71,7 +71,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.6")
     implementation("androidx.compose.material:material-icons-extended:1.4.3")
 
     implementation("androidx.compose.ui:ui:1.4.1")
@@ -79,4 +79,5 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview:1.4.1")
     implementation("androidx.activity:activity-compose:1.7.1")
     implementation("com.google.code.gson:gson:2.8.8")
+
 }
