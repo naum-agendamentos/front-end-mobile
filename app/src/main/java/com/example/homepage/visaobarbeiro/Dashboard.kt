@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -47,6 +49,33 @@ class Dashboard : ComponentActivity() {
                     )
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun BarChart(
+    data: List<Float>,
+    modifier: Modifier = Modifier,
+    barColor: Color = MaterialTheme.colorScheme.primary
+) {
+    Canvas(modifier = modifier) {
+        val barWidth = size.width / (data.size * 2)
+        val maxDataValue = data.maxOrNull() ?: 1f
+
+        data.forEachIndexed { index, value ->
+            val barHeight = (value / maxDataValue) * size.height
+            drawRect(
+                color = barColor,
+                topLeft = androidx.compose.ui.geometry.Offset(
+                    x = index * 2 * barWidth,
+                    y = size.height - barHeight
+                ),
+                size = androidx.compose.ui.geometry.Size(
+                    width = barWidth,
+                    height = barHeight
+                )
+            )
         }
     }
 }
@@ -89,8 +118,9 @@ fun Dashboard(name: String, modifier: Modifier = Modifier) {
 
             Spacer(modifier = Modifier.height(15.dp))
 
-            Column (modifier = Modifier.padding(10.dp)) {
-                Box(contentAlignment = Alignment.Center,
+            Column(modifier = Modifier.padding(10.dp)) {
+                Box(
+                    contentAlignment = Alignment.Center,
                     modifier = Modifier
                         .fillMaxWidth()
                         .border(
@@ -98,11 +128,11 @@ fun Dashboard(name: String, modifier: Modifier = Modifier) {
                             Color.White,
                             RoundedCornerShape(5.dp)
                         )
-                        .background(colorResource(id = R.color.preto),
-
+                        .background(
+                            colorResource(id = R.color.preto),
                             RoundedCornerShape(12.dp)
-                        )) {
-
+                        )
+                ) {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier.padding(10.dp)
@@ -136,7 +166,10 @@ fun Dashboard(name: String, modifier: Modifier = Modifier) {
                         modifier = Modifier
                             .width(150.dp)
                             .border(1.dp, Color.White, RoundedCornerShape(5.dp))
-                            .background(colorResource(id = R.color.preto), RoundedCornerShape(12.dp))
+                            .background(
+                                colorResource(id = R.color.preto),
+                                RoundedCornerShape(12.dp)
+                            )
                             .padding(10.dp) // Padding interno
                     ) {
                         Column(
@@ -168,7 +201,10 @@ fun Dashboard(name: String, modifier: Modifier = Modifier) {
                         modifier = Modifier
                             .weight(1f) // Distribui o espaço igualmente entre as Box
                             .border(1.dp, Color.White, RoundedCornerShape(5.dp))
-                            .background(colorResource(id = R.color.preto), RoundedCornerShape(12.dp))
+                            .background(
+                                colorResource(id = R.color.preto),
+                                RoundedCornerShape(12.dp)
+                            )
                             .padding(10.dp) // Padding interno
                     ) {
                         Column(
@@ -195,10 +231,83 @@ fun Dashboard(name: String, modifier: Modifier = Modifier) {
                     }
                 }
 
+                Spacer(modifier = Modifier.height(15.dp))
+
+                // Adicionando os gráficos de barras com altura reduzida, fundo transparente e borda branca
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        text = "GRÁFICO 1",
+                        style = TextStyle(
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 18.sp,
+                            color = Color.White
+                        )
+                    )
+                    BarChart(
+                        data = listOf(10f, 20f, 30f, 40f),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(150.dp)
+                            .padding(10.dp)
+                            .background(Color.Transparent)
+                            .border(1.dp, Color.White, RoundedCornerShape(5.dp))
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        text = "GRÁFICO 2",
+                        style = TextStyle(
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 18.sp,
+                            color = Color.White
+                        )
+                    )
+                    BarChart(
+                        data = listOf(15f, 25f, 35f, 45f),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(150.dp)
+                            .padding(10.dp)
+                            .background(Color.Transparent)
+                            .border(1.dp, Color.White, RoundedCornerShape(5.dp))
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        text = "GRÁFICO 3",
+                        style = TextStyle(
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 18.sp,
+                            color = Color.White
+                        )
+                    )
+                    BarChart(
+                        data = listOf(5f, 15f, 25f, 35f),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(150.dp)
+                            .padding(10.dp)
+                            .background(Color.Transparent)
+                            .border(1.dp, Color.White, RoundedCornerShape(5.dp))
+                    )
+                }
             }
-
         }
-
     }
     IconRow()
 }
