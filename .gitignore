@@ -1,0 +1,41 @@
+# Diretórios de compilação
+/build/
+/out/
+
+# Arquivos e diretórios do IntelliJ IDEA
+/.idea/
+/*.iml
+
+# Arquivos do Gradle
+/.gradle/
+/gradle/
+/gradlew
+/gradlew.bat
+
+# Diretório de caches do Maven
+/.mvn/
+/target/
+
+# Logs e arquivos temporários
+*.log
+*.tmp
+*.temp
+*.swp
+
+# Arquivos de configuração do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Binários e bibliotecas compiladas
+*.class
+*.jar
+*.war
+*.ear
+*.dll
+*.so
+*.exe
+
+# Arquivos de configuração do aplicativo
+local.properties
+.gradle/
+gradle-app.setting
