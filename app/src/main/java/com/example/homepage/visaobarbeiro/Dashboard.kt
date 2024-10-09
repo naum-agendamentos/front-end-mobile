@@ -8,16 +8,10 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -94,152 +88,152 @@ fun Dashboard(name: String, modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxSize()
         )
 
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
+        LazyColumn(
+            modifier = Modifier.fillMaxSize()
         ) {
-            Row {
-                navBarb()
-            }
+            item {
+                Row {
+                    navBarb()
+                }
 
-            Box(
-                modifier = Modifier.fillMaxWidth(),
-                contentAlignment = Alignment.Center // Centraliza o conteúdo
-            ) {
-                Text(
-                    text = "DASHBOARD",
-                    style = TextStyle(
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 25.sp,
-                        color = Color.White
-                    )
-                )
-            }
-
-            Spacer(modifier = Modifier.height(15.dp))
-
-            Column(modifier = Modifier.padding(10.dp)) {
                 Box(
-                    contentAlignment = Alignment.Center,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .border(
-                            1.dp,
-                            Color.White,
-                            RoundedCornerShape(5.dp)
-                        )
-                        .background(
-                            colorResource(id = R.color.preto),
-                            RoundedCornerShape(12.dp)
-                        )
+                        .padding(15.dp),
+                    contentAlignment = Alignment.Center
                 ) {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier.padding(10.dp)
-                    ) {
-                        Text(
-                            text = "LUCRO TOTAL DA BARBEARIA",
-                            style = TextStyle(
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 18.sp,
-                                color = Color.White
-                            )
+                    Text(
+                        text = "DASHBOARD",
+                        style = TextStyle(
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 25.sp,
+                            color = Color.White
                         )
-
-                        Text(
-                            text = "R$210.00",
-                            style = TextStyle(
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 22.sp,
-                                color = Color.White
-                            )
-                        )
-                    }
+                    )
                 }
 
                 Spacer(modifier = Modifier.height(15.dp))
 
-                Row(
-                    modifier = Modifier.fillMaxWidth() // Faz o Row ocupar toda a largura disponível
-                ) {
+                Column(modifier = Modifier.padding(10.dp)) {
                     Box(
+                        contentAlignment = Alignment.Center,
                         modifier = Modifier
-                            .width(150.dp)
+                            .fillMaxWidth()
                             .border(1.dp, Color.White, RoundedCornerShape(5.dp))
-                            .background(
-                                colorResource(id = R.color.preto),
-                                RoundedCornerShape(12.dp)
-                            )
-                            .padding(10.dp) // Padding interno
+                            .background(colorResource(id = R.color.preto), RoundedCornerShape(12.dp))
                     ) {
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally,
-                            modifier = Modifier.fillMaxWidth() // Garante que a coluna ocupe toda a largura da Box
+                            modifier = Modifier.padding(10.dp)
                         ) {
                             Text(
-                                text = "MÉDIA DE AVALIAÇÃO",
-                                style = TextStyle(
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 12.sp,
-                                    color = Color.White
-                                )
-                            )
-                            Text(
-                                text = "0 ★",
+                                text = "LUCRO TOTAL DA BARBEARIA",
                                 style = TextStyle(
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 18.sp,
                                     color = Color.White
                                 )
                             )
+
+                            Text(
+                                text = "R$210.00",
+                                style = TextStyle(
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 22.sp,
+                                    color = Color.White
+                                )
+                            )
                         }
                     }
 
-                    Spacer(modifier = Modifier.width(10.dp)) // Espaço entre as Box
+                    Spacer(modifier = Modifier.height(15.dp))
 
-                    Box(
-                        modifier = Modifier
-                            .weight(1f) // Distribui o espaço igualmente entre as Box
-                            .border(1.dp, Color.White, RoundedCornerShape(5.dp))
-                            .background(
-                                colorResource(id = R.color.preto),
-                                RoundedCornerShape(12.dp)
-                            )
-                            .padding(10.dp) // Padding interno
+                    Row(
+                        modifier = Modifier.fillMaxWidth()
                     ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            modifier = Modifier.fillMaxWidth() // Garante que a coluna ocupe toda a largura da Box
+                        Box(
+                            modifier = Modifier
+                                .width(150.dp)
+                                .border(1.dp, Color.White, RoundedCornerShape(5.dp))
+                                .background(colorResource(id = R.color.preto), RoundedCornerShape(12.dp))
+                                .padding(10.dp)
                         ) {
-                            Text(
-                                text = "TOTAL AGENDAMENTO NO DIA",
-                                style = TextStyle(
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 12.sp,
-                                    color = Color.White
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                Text(
+                                    text = "MÉDIA DE AVALIAÇÃO",
+                                    style = TextStyle(
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 12.sp,
+                                        color = Color.White
+                                    )
                                 )
-                            )
-                            Text(
-                                text = "0 - 0% que ontem",
-                                style = TextStyle(
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 18.sp,
-                                    color = Color.White
+                                Text(
+                                    text = "0 ★",
+                                    style = TextStyle(
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 18.sp,
+                                        color = Color.White
+                                    )
                                 )
-                            )
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.width(10.dp))
+
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .border(1.dp, Color.White, RoundedCornerShape(5.dp))
+                                .background(colorResource(id = R.color.preto), RoundedCornerShape(12.dp))
+                                .padding(10.dp)
+                        ) {
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                Text(
+                                    text = "TOTAL AGENDAMENTO NO DIA",
+                                    style = TextStyle(
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 12.sp,
+                                        color = Color.White
+                                    )
+                                )
+                                Text(
+                                    text = "0 - 0% que ontem",
+                                    style = TextStyle(
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 18.sp,
+                                        color = Color.White
+                                    )
+                                )
+                            }
                         }
                     }
+
+                    Spacer(modifier = Modifier.height(15.dp))
                 }
+            }
 
-                Spacer(modifier = Modifier.height(15.dp))
-
-                // Adicionando os gráficos de barras com altura reduzida, fundo transparente e borda branca
+            // Adicionando os gráficos um embaixo do outro
+            items(
+                listOf(
+                    "GRÁFICO 1" to listOf(10f, 20f, 30f, 40f),
+                    "GRÁFICO 2" to listOf(15f, 25f, 35f, 45f),
+                    "GRÁFICO 3" to listOf(5f, 15f, 25f, 35f)
+                )
+            ) { (title, data) ->
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp)
                 ) {
                     Text(
-                        text = "GRÁFICO 1",
+                        text = title,
                         style = TextStyle(
                             fontWeight = FontWeight.Bold,
                             fontSize = 18.sp,
@@ -247,7 +241,7 @@ fun Dashboard(name: String, modifier: Modifier = Modifier) {
                         )
                     )
                     BarChart(
-                        data = listOf(10f, 20f, 30f, 40f),
+                        data = data,
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(150.dp)
@@ -256,56 +250,11 @@ fun Dashboard(name: String, modifier: Modifier = Modifier) {
                             .border(1.dp, Color.White, RoundedCornerShape(5.dp))
                     )
                 }
+            }
 
-                Spacer(modifier = Modifier.height(10.dp))
-
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text(
-                        text = "GRÁFICO 2",
-                        style = TextStyle(
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 18.sp,
-                            color = Color.White
-                        )
-                    )
-                    BarChart(
-                        data = listOf(15f, 25f, 35f, 45f),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(150.dp)
-                            .padding(10.dp)
-                            .background(Color.Transparent)
-                            .border(1.dp, Color.White, RoundedCornerShape(5.dp))
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(10.dp))
-
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text(
-                        text = "GRÁFICO 3",
-                        style = TextStyle(
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 18.sp,
-                            color = Color.White
-                        )
-                    )
-                    BarChart(
-                        data = listOf(5f, 15f, 25f, 35f),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(150.dp)
-                            .padding(10.dp)
-                            .background(Color.Transparent)
-                            .border(1.dp, Color.White, RoundedCornerShape(5.dp))
-                    )
-                }
+            // Adicionando espaçamento extra no final
+            item {
+                Spacer(modifier = Modifier.height(100.dp))
             }
         }
     }
