@@ -59,7 +59,7 @@ fun navBarb() {
     }
 }
 
-@Preview(showBackground = false)
+@Preview(showBackground = true)
 @Composable
 fun verNavBarbeiro() {
     navBarb()
