@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.material3.Button
@@ -23,6 +24,8 @@ import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -44,6 +47,7 @@ import java.util.Locale
 fun telaBloqueioDeHora() {
     val backgroundImage = painterResource(id = R.drawable.fundo_barbeiro)
     val horarios = gerarHorarios("08:00", "20:00")
+    val coresHoras = remember { mutableStateListOf(*Array(horarios.size) { Color.Transparent }) }
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -78,11 +82,7 @@ fun telaBloqueioDeHora() {
                     .background(
                         color = colorResource(id = R.color.preto),
                         shape = RoundedCornerShape(15.dp)
-                    )
-                    .clickable {
-                        // Ação ao clicar no Box
-                        println("Box clicado!") // Exemplo de ação
-                    },
+                    ),
                 contentAlignment = Alignment.TopStart
             ) {
                 LazyColumn(
@@ -93,15 +93,19 @@ fun telaBloqueioDeHora() {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     // Passa a lista de horários diretamente
-                    items(horarios) { horario ->
+                    itemsIndexed(horarios) { index, horario ->
                         Box(
                             modifier = Modifier
                                 .width(150.dp)
                                 .padding(vertical = 8.dp)
-                                .background(Color.Transparent, shape = RoundedCornerShape(10.dp))
+                                .background(coresHoras[index], shape = RoundedCornerShape(10.dp))
                                 .border(color = Color.White, width = 3.dp, shape = RoundedCornerShape(10.dp))
                                 .padding(16.dp)
-                                .align(Alignment.Center),
+                                .align(Alignment.Center)
+                                .clickable {
+                                    // Ação ao clicar no Box
+                                    coresHoras[index] = if (coresHoras[index] == Color.Transparent) Color.Red else Color.Transparent
+                                },
                                 contentAlignment = Alignment.Center
                         ) {
                             Text(
@@ -109,7 +113,6 @@ fun telaBloqueioDeHora() {
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = Color.White
-
                             )
                         }
                     }
@@ -132,7 +135,7 @@ fun telaBloqueioDeHora() {
                     )
                         {
                             Text(
-                                text = "BLOQUEAR",
+                                text = "CANCELAR",
                                 style = TextStyle(
                                     fontSize = 16.sp,  // Aumenta o tamanho da fonte
                                     fontWeight = FontWeight.Bold, // Opcional: deixa o texto em negrito
@@ -144,11 +147,11 @@ fun telaBloqueioDeHora() {
                         .width(160.dp)
                         .height(60.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = colorResource(id = R.color.btn_editar), // Cor de fundo do botão
+                            containerColor = colorResource(id = R.color.btn_cadastrar), // Cor de fundo do botão
                             contentColor = Color.White)   // Cor do texto
                         ) {
                         Text(
-                            text = "DESBLOQUEAR",
+                            text = "SALVAR",
                             style = TextStyle(
                                 fontSize = 16.sp,  // Aumenta o tamanho da fonte
                                 fontWeight = FontWeight.Bold, // Opcional: deixa o texto em negrito

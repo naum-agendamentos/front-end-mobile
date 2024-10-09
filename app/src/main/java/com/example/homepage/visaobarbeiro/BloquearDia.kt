@@ -97,7 +97,12 @@ fun telaBloqueioDeDia() {
                                 .align(Alignment.Center)
                                 .clickable {
                                     // Ação ao clicar no Box
-                                    coresDias[index] = if (coresDias[index] == Color.Transparent) Color.Red else Color.Transparent
+                                    coresDias[index] = if (coresDias[index] == Color.Transparent) {
+                                        Color.Red
+
+                                    } else {
+                                        Color.Transparent
+                                    }
                                 },
                             contentAlignment = Alignment.Center
                         ) {
@@ -106,7 +111,6 @@ fun telaBloqueioDeDia() {
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = Color.White
-
                             )
                         }
                     }
@@ -129,7 +133,7 @@ fun telaBloqueioDeDia() {
                     )
                     {
                         Text(
-                            text = "BLOQUEAR",
+                            text = "CANCELAR",
                             style = TextStyle(
                                 fontSize = 16.sp,  // Aumenta o tamanho da fonte
                                 fontWeight = FontWeight.Bold, // Opcional: deixa o texto em negrito
@@ -141,11 +145,11 @@ fun telaBloqueioDeDia() {
                         .width(160.dp)
                         .height(60.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = colorResource(id = R.color.btn_editar), // Cor de fundo do botão
+                            containerColor = colorResource(id = R.color.btn_cadastrar), // Cor de fundo do botão
                             contentColor = Color.White)   // Cor do texto
                     ) {
                         Text(
-                            text = "DESBLOQUEAR",
+                            text = "SALVAR",
                             style = TextStyle(
                                 fontSize = 16.sp,  // Aumenta o tamanho da fonte
                                 fontWeight = FontWeight.Bold, // Opcional: deixa o texto em negrito
