@@ -1,5 +1,6 @@
 package com.example.homepage.visaobarbeiro
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -19,13 +21,21 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.SnackbarDefaults.backgroundColor
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -47,11 +57,15 @@ import java.util.Locale
 fun telaBloqueioDeHora() {
     val backgroundImage = painterResource(id = R.drawable.fundo_barbeiro)
     val horarios = gerarHorarios("08:00", "20:00")
-    val coresHoras = remember { mutableStateListOf(*Array(horarios.size) { Color.Transparent }) }
+    val diasDaSemana = listOf("Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado")
+    var diaAtualIndex by remember { mutableStateOf(0) }
 
-    Box(
-        modifier = Modifier.fillMaxSize()
-    ) {
+    // Mapeia cada dia da semana para uma lista de cores independentes para os horários
+    val coresPorDia = remember {
+        diasDaSemana.associateWith { mutableStateListOf(*Array(horarios.size) { Color.Transparent }) }
+    }
+
+    Box(modifier = Modifier.fillMaxSize()) {
         Image(
             painter = backgroundImage,
             contentDescription = null,
@@ -60,8 +74,7 @@ fun telaBloqueioDeHora() {
         )
         navBarb()
         Box(
-            modifier = Modifier
-                .fillMaxSize(),
+            modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
             Text(
@@ -75,24 +88,51 @@ fun telaBloqueioDeHora() {
                     .align(Alignment.TopCenter)
                     .padding(top = 90.dp)
             )
-            Box(
+            Column(
                 modifier = Modifier
                     .height(580.dp)
                     .width(350.dp)
-                    .background(
-                        color = colorResource(id = R.color.preto),
-                        shape = RoundedCornerShape(15.dp)
-                    ),
-                contentAlignment = Alignment.TopStart
+                    .background(color = colorResource(id = R.color.preto), shape = RoundedCornerShape(15.dp)),
+                verticalArrangement = Arrangement.SpaceBetween
             ) {
-                LazyColumn(
+                Row(
                     modifier = Modifier
-                        .width(350.dp)
-                        .height(430.dp)
-                        .padding(16.dp),
+                        .fillMaxWidth()
+                        .background(color = Color.White, shape = RoundedCornerShape(topStart = 15.dp, topEnd = 15.dp)),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    OutlinedButton(
+                        onClick = { diaAtualIndex = if (diaAtualIndex == 0) diasDaSemana.lastIndex else diaAtualIndex - 1 },
+                        border = BorderStroke(2.dp, Color.Black),
+                        shape = RoundedCornerShape(5.dp),
+                        colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent, contentColor = Color.Black)
+                    ) {
+                        Icon(Icons.Filled.ArrowBack, contentDescription = "Anterior")
+                    }
+                    Row (modifier = Modifier.width(180.dp), horizontalArrangement = Arrangement.Center)
+                    {
+                        Text(
+                            text = diasDaSemana[diaAtualIndex],
+                            fontSize = 24.sp,
+                            modifier = Modifier.padding(horizontal = 5.dp)
+                        )
+                    }
+                    OutlinedButton(
+                        onClick = { diaAtualIndex = if (diaAtualIndex == diasDaSemana.lastIndex) 0 else diaAtualIndex + 1 },
+                        border = BorderStroke(2.dp, Color.Black),
+                        shape = RoundedCornerShape(5.dp),
+                        colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent, contentColor = Color.Black)
+                    ) {
+                        Icon(Icons.Filled.ArrowForward, contentDescription = "Próximo")
+                    }
+                }
+
+                LazyColumn(
+                    modifier = Modifier.width(350.dp).height(400.dp).padding(16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    // Passa a lista de horários diretamente
+                    val coresHoras = coresPorDia[diasDaSemana[diaAtualIndex]] ?: mutableStateListOf()
                     itemsIndexed(horarios) { index, horario ->
                         Box(
                             modifier = Modifier
@@ -101,12 +141,10 @@ fun telaBloqueioDeHora() {
                                 .background(coresHoras[index], shape = RoundedCornerShape(10.dp))
                                 .border(color = Color.White, width = 3.dp, shape = RoundedCornerShape(10.dp))
                                 .padding(16.dp)
-                                .align(Alignment.Center)
                                 .clickable {
-                                    // Ação ao clicar no Box
                                     coresHoras[index] = if (coresHoras[index] == Color.Transparent) Color.Red else Color.Transparent
                                 },
-                                contentAlignment = Alignment.Center
+                            contentAlignment = Alignment.Center
                         ) {
                             Text(
                                 text = horario,
@@ -118,45 +156,25 @@ fun telaBloqueioDeHora() {
                     }
                 }
                 Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.BottomCenter)
-                        .padding(vertical = 20.dp, horizontal = 10.dp),
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp, horizontal = 10.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Button(onClick = { /*TODO*/ },
-                        modifier = Modifier
-                            .width(160.dp)
-                            .height(60.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = colorResource(id = R.color.btn_vermelho), // Cor de fundo do botão
-                            contentColor = Color.White   // Cor do texto
+                        modifier = Modifier.width(160.dp).height(60.dp),
+                        colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.btn_vermelho), contentColor = Color.White)
+                    ) {
+                        Text(
+                            text = "CANCELAR",
+                            style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Color.White)
                         )
-                    )
-                        {
-                            Text(
-                                text = "CANCELAR",
-                                style = TextStyle(
-                                    fontSize = 16.sp,  // Aumenta o tamanho da fonte
-                                    fontWeight = FontWeight.Bold, // Opcional: deixa o texto em negrito
-                                    color = Color.White // Cor do texto (opcional)
-                                )
-                            )
                     }
-                    Button(onClick = { /*TODO*/ }, modifier = Modifier
-                        .width(160.dp)
-                        .height(60.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = colorResource(id = R.color.btn_cadastrar), // Cor de fundo do botão
-                            contentColor = Color.White)   // Cor do texto
-                        ) {
+                    Button(onClick = { /*TODO*/ },
+                        modifier = Modifier.width(160.dp).height(60.dp),
+                        colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.btn_cadastrar), contentColor = Color.White)
+                    ) {
                         Text(
                             text = "SALVAR",
-                            style = TextStyle(
-                                fontSize = 16.sp,  // Aumenta o tamanho da fonte
-                                fontWeight = FontWeight.Bold, // Opcional: deixa o texto em negrito
-                                color = Color.White // Cor do texto (opcional)
-                            )
+                            style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Color.White)
                         )
                     }
                 }
@@ -164,6 +182,7 @@ fun telaBloqueioDeHora() {
         }
     }
 }
+
 
 fun gerarHorarios(inicio: String, fim: String): List<String> {
     val listaHorarios = mutableListOf<String>()

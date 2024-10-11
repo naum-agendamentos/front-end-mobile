@@ -80,4 +80,12 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.7.1")
     implementation("com.google.code.gson:gson:2.8.8")
 
+    implementation("com.google.code.gson:gson:2.8.8")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+
+
+
 }
