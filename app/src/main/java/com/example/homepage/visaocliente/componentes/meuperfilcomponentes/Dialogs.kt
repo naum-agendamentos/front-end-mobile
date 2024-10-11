@@ -74,3 +74,19 @@ fun ExcluirContaDecisao(){
         )
     }
 }
+
+@Composable
+fun ExcluirContaDecisao2(){
+    Column(
+        modifier = Modifier
+            .fillMaxHeight(0.6f)
+            .fillMaxWidth(),
+        verticalArrangement = Arrangement.SpaceAround,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
+        Text(text = "Tem certeza que\n" +
+                "deseja excluir\n"  +
+                " esse agendamento\n ", fontWeight = FontWeight.Bold, fontSize = 30.sp, textAlign = TextAlign.Center, style = TextStyle(lineHeight = 50.sp)
+        )
+    }
+}
