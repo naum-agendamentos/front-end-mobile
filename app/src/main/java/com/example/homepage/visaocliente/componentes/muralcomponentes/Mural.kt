@@ -43,7 +43,7 @@ fun Mural(viewModel: MuralViewModel = viewModel()) {
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold
             )
-        }    
+        }
 
         // Use remember para armazenar os avisos apenas uma vez
         val avisos = remember { viewModel.getAvisos() }
