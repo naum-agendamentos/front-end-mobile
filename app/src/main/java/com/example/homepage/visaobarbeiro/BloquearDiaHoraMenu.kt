@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -48,7 +49,7 @@ fun BloqueioDiaHoraMenu() {
                 .fillMaxSize()
         ) {
             Text(
-                text = "BLOQUEAR HORÁRIO/DIA",
+                text = stringResource(id = R.string.bloquear_dia),
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
                     fontSize = 30.sp,
@@ -74,9 +75,10 @@ fun BloqueioDiaHoraMenu() {
                         .background(
                             color = colorResource(id = R.color.preto),
                             shape = RoundedCornerShape(15.dp)
-                        ).clickable {
+                        )
+                        .clickable {
                             // Ação ao clicar no Box
-                            println("Box clicado!") // Exemplo de ação
+                            // Exemplo de ação
                         },
                     contentAlignment = Alignment.Center // Centraliza o conteúdo no Box
                 ) {
@@ -88,7 +90,7 @@ fun BloqueioDiaHoraMenu() {
                             .padding(bottom = 25.dp)
                     )
                     Text(
-                        text = "BLOQUEAR DIA",
+                        text = stringResource(id = R.string.bloquear_dia),
                         style = TextStyle(
                             fontWeight = FontWeight.Bold,
                             fontSize = 20.sp,
@@ -98,37 +100,37 @@ fun BloqueioDiaHoraMenu() {
                     )
                 }
 
-                Box(
-                    modifier = Modifier
-                        .width(287.5.dp) // 250 dp + 15%
-                        .height(143.75.dp) // 125 dp + 15%
-                        .padding(20.dp)
-                        .background(
-                            color = colorResource(id = R.color.preto),
-                            shape = RoundedCornerShape(15.dp)
-                        ).clickable {
-                            // Ação ao clicar no Box
-                            println("Box clicado!") // Exemplo de ação
-                        },
-                    contentAlignment = Alignment.Center, // Centraliza o conteúdo no Box
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.pngrelogio),
-                        contentDescription = "Calendar image",
-                        modifier = Modifier
-                            .size(60.dp)
-                            .padding(bottom = 25.dp)
-                    )
-                    Text(
-                        text = "BLOQUEAR HORÁRIO",
-                        style = TextStyle(
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 20.sp,
-                            color = Color.White
-                        ),
-                        modifier = Modifier.padding(top = 55.dp)
-                    )
-                }
+//                Box(
+//                    modifier = Modifier
+//                        .width(287.5.dp) // 250 dp + 15%
+//                        .height(143.75.dp) // 125 dp + 15%
+//                        .padding(20.dp)
+//                        .background(
+//                            color = colorResource(id = R.color.preto),
+//                            shape = RoundedCornerShape(15.dp)
+//                        ).clickable {
+//                            // Ação ao clicar no Box
+//                            println("Box clicado!") // Exemplo de ação
+//                        },
+//                    contentAlignment = Alignment.Center, // Centraliza o conteúdo no Box
+//                ) {
+//                    Image(
+//                        painter = painterResource(id = R.drawable.pngrelogio),
+//                        contentDescription = "Calendar image",
+//                        modifier = Modifier
+//                            .size(60.dp)
+//                            .padding(bottom = 25.dp)
+//                    )
+//                    Text(
+//                        text = "BLOQUEAR HORÁRIO",
+//                        style = TextStyle(
+//                            fontWeight = FontWeight.Bold,
+//                            fontSize = 20.sp,
+//                            color = Color.White
+//                        ),
+//                        modifier = Modifier.padding(top = 55.dp)
+//                    )
+//                }
             }
 
         }

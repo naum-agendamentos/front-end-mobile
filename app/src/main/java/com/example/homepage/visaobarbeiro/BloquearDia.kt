@@ -1,5 +1,7 @@
 package com.example.homepage.visaobarbeiro
 
+import BarbeiroEntity
+import SemanaEntity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -22,12 +24,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,12 +39,37 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.homepage.R
 import com.example.homepage.ui.theme.HomepageTheme
+import kotlinx.coroutines.launch
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 @Composable
-fun telaBloqueioDeDia() {
+fun telaBloqueioDeDia(barbeiro: BarbeiroEntity) {
     val backgroundImage = painterResource(id = R.drawable.fundo_barbeiro)
     val diasDaSemana = listOf("Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado")
-    val coresDias = remember { mutableStateListOf(*Array(diasDaSemana.size) { Color.Transparent }) }
+    val coresDias = remember {
+        mutableStateListOf(
+            if (!barbeiro.semana.domingo) Color.Red else Color.Transparent,
+            if (!barbeiro.semana.segunda) Color.Red else Color.Transparent,
+            if (!barbeiro.semana.terca) Color.Red else Color.Transparent,
+            if (!barbeiro.semana.quarta) Color.Red else Color.Transparent,
+            if (!barbeiro.semana.quinta) Color.Red else Color.Transparent,
+            if (!barbeiro.semana.sexta) Color.Red else Color.Transparent,
+            if (!barbeiro.semana.sabado) Color.Red else Color.Transparent
+        )
+    }
+
+
+    val retrofit by lazy {
+        Retrofit.Builder()
+            .baseUrl("http://localhost:8080/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    val coroutineScope = rememberCoroutineScope()
+
+    val barbeiroService = retrofit.create(ApiBarbeiro::class.java)
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -58,7 +87,7 @@ fun telaBloqueioDeDia() {
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = "BLOQUEAR DIA",
+                text = stringResource(id = R.string.bloquear_dia),
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
                     fontSize = 30.sp,
@@ -85,7 +114,6 @@ fun telaBloqueioDeDia() {
                         .padding(16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    // Passa a lista de horários diretamente
                     itemsIndexed(diasDaSemana) { index, dia ->
                         Box(
                             modifier = Modifier
@@ -96,10 +124,9 @@ fun telaBloqueioDeDia() {
                                 .padding(16.dp)
                                 .align(Alignment.Center)
                                 .clickable {
-                                    // Ação ao clicar no Box
+                                    // Alterna a cor entre transparente (disponível) e vermelho (bloqueado)
                                     coresDias[index] = if (coresDias[index] == Color.Transparent) {
                                         Color.Red
-
                                     } else {
                                         Color.Transparent
                                     }
@@ -122,38 +149,59 @@ fun telaBloqueioDeDia() {
                         .padding(vertical = 20.dp, horizontal = 10.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Button(onClick = { /*TODO*/ },
+                    Button(onClick = { /* Ação de Cancelar */ },
                         modifier = Modifier
                             .width(160.dp)
                             .height(60.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = colorResource(id = R.color.btn_vermelho), // Cor de fundo do botão
-                            contentColor = Color.White   // Cor do texto
+                            containerColor = colorResource(id = R.color.btn_vermelho),
+                            contentColor = Color.White
                         )
-                    )
-                    {
+                    ) {
                         Text(
                             text = "CANCELAR",
                             style = TextStyle(
-                                fontSize = 16.sp,  // Aumenta o tamanho da fonte
-                                fontWeight = FontWeight.Bold, // Opcional: deixa o texto em negrito
-                                color = Color.White // Cor do texto (opcional)
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color.White
                             )
                         )
                     }
-                    Button(onClick = { /*TODO*/ }, modifier = Modifier
-                        .width(160.dp)
-                        .height(60.dp),
+
+                    // Botão de Salvar
+                    Button(onClick = {
+                        // Cria a entidade SemanaEntity baseada nos dias selecionados
+                        val semana = SemanaEntity(
+                            domingo = coresDias[0] == Color.Transparent,
+                            segunda = coresDias[1] == Color.Transparent,
+                            terca = coresDias[2] == Color.Transparent,
+                            quarta = coresDias[3] == Color.Transparent,
+                            quinta = coresDias[4] == Color.Transparent,
+                            sexta = coresDias[5] == Color.Transparent,
+                            sabado = coresDias[6] == Color.Transparent
+                        )
+                        coroutineScope.launch {
+                            try {
+                                barbeiroService.putBarbeiros(barbeiro.id, semana)
+                            } catch (e: Exception) {
+                                // Trate o erro aqui, exiba uma mensagem ou log
+                            }
+                        }
+                    },
+                        modifier = Modifier
+                            .width(160.dp)
+                            .height(60.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = colorResource(id = R.color.btn_cadastrar), // Cor de fundo do botão
-                            contentColor = Color.White)   // Cor do texto
+                            containerColor = colorResource(id = R.color.btn_cadastrar),
+                            contentColor = Color.White
+                        )
                     ) {
                         Text(
                             text = "SALVAR",
                             style = TextStyle(
-                                fontSize = 16.sp,  // Aumenta o tamanho da fonte
-                                fontWeight = FontWeight.Bold, // Opcional: deixa o texto em negrito
-                                color = Color.White // Cor do texto (opcional)
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color.White
                             )
                         )
                     }
@@ -167,6 +215,6 @@ fun telaBloqueioDeDia() {
 @Composable
 fun BloqueioDiaPreview() {
     HomepageTheme {
-        telaBloqueioDeDia()
+        telaBloqueioDeDia(BarbeiroEntity(1, "Bryan", "bryan.com", "1198875454", "meninin fei", "foto feia muito feia", SemanaEntity(false, false, true, false, true, false, true)))
     }
 }

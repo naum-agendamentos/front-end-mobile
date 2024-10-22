@@ -8,7 +8,6 @@ object RetrofitService {
 
     val BASE_URL_FEIRA = "http://localhost:8080"
 
-    // função que retorna o cliente para a API de filmes
     fun getApiAviso(): ApiMural {
         val cliente =
             Retrofit.Builder()

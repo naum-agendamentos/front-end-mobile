@@ -57,6 +57,7 @@
     <string name="title_activity_cliente_tela_inicial">ClienteTelaInicial</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_tela_escolher_servico">TelaEscolherServico</string>
+    <string name="bloquear_dia">BLOQUEAR DIA</string>
 
 
 </resources>

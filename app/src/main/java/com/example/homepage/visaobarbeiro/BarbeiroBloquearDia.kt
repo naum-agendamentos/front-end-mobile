@@ -1,5 +1,6 @@
 package com.example.homepage.visaobarbeiro
 
+import BarbeiroEntity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -16,11 +17,18 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,10 +36,32 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.homepage.R
 import com.example.homepage.ui.theme.HomepageTheme
+import kotlinx.coroutines.launch
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 @Composable
 fun BarbeiroBloqueioDiaHora() {
     val backgroundImage = painterResource(id = R.drawable.fundo_barbeiro)
+    var barbeiros by remember { mutableStateOf<List<BarbeiroEntity>>(emptyList()) }
+    val coroutineScope = rememberCoroutineScope()
+
+    val retrofit = Retrofit.Builder()
+        .baseUrl("http://localhost:8080") // Substitua pela URL da sua API
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    val apiService = retrofit.create(ApiBarbeiro::class.java)
+
+    LaunchedEffect(Unit) {
+        coroutineScope.launch {
+            try {
+                barbeiros = apiService.getBarbeiros(1L)
+            } catch (e: Exception) {
+                // Trate o erro aqui, exiba uma mensagem ou log
+            }
+        }
+    }
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -56,7 +86,7 @@ fun BarbeiroBloqueioDiaHora() {
                 .fillMaxSize()
         ) {
             Text(
-                text = "BLOQUEAR HORÁRIO/DIA",
+                text = stringResource(id = R.string.bloquear_dia),
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
                     fontSize = 30.sp,
@@ -79,15 +109,14 @@ fun BarbeiroBloqueioDiaHora() {
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    val barbeiros = listOf(
-                        Pair("Barbeiro 1", R.drawable.barbeiro1),
-                        Pair("Barbeiro 2", R.drawable.barbeiro2),
-                        Pair("Barbeiro 3", R.drawable.barbeiro3),
-                        Pair("Barbeiro 4", R.drawable.barbeiro3)
-                    )
-
-                    items(barbeiros) { (name, imageRes) ->
-                        CardBarbeiro(name = name, imageRes = imageRes)
+//                    val barbeiros = listOf(
+//                        Pair("Barbeiro 1", R.drawable.barbeiro1),
+//                        Pair("Barbeiro 2", R.drawable.barbeiro2),
+//                        Pair("Barbeiro 3", R.drawable.barbeiro3),
+//                        Pair("Barbeiro 4", R.drawable.barbeiro3)
+//                    )
+                    items(barbeiros) {
+                        CardBarbeiro(name = it.nome, imageRes = it.foto.toInt())
                     }
                 }
             }
